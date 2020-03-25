@@ -11,4 +11,5 @@ branches:
     - master
 after_success:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker push giangbuiquang/aatest
+  - docker build -t giangbuiquang/aatest:1.0 .
+  - docker push giangbuiquang/aatest:1.0
