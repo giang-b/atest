@@ -4,10 +4,9 @@ language: node_js
 cache:
   directories:
     - node_modules
-before_install:
-  - docker build -t giangbuiquang/aatest:1.0 .
 script:
-  - docker images giangbuiquang/aatest:1.0
+  - npm run build
+  - docker build -t giangbuiquang/aatest:1.0 .
 branches:
   only:
     - master
