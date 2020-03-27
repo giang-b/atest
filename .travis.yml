@@ -22,7 +22,7 @@ after_success:
 
 deploy:
   - provider: script
-    script: .travis/deploy.sh
+    script: bash .travis/deploy.sh
     on:
       branch: developer
   # - provider: script
