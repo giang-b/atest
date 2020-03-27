@@ -25,6 +25,10 @@ deploy:
     script: bash .travis/deploy.sh
     on:
       branch: developer
+addons:
+  ssh_known_hosts:
+    - $REMOTE_HOST
+
   # - provider: script
   #   script: deploy_staging.sh
   #   on:
