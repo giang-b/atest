@@ -32,7 +32,7 @@ jobs:
     #   - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/travis-ci-build-stages-demo
     #   - docker push $DOCKER_USERNAME/travis-ci-build-stages-demo
     - stage: development
-      branch: developer
+      if: branch = developer
       script:
         - npm run build
         - docker build -t giangbuiquang/aatest:dev-$DEV_VERSION .
@@ -44,8 +44,8 @@ jobs:
           script: bash .travis/dev_deploy.sh
 
     - stage: production
-      branches:
-        only: master
+      if: branch = master
+
       script:
         - npm run build
         - docker build -t giangbuiquang/aatest:production-$PROD_VERSION .
