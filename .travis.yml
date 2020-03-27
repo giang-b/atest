@@ -42,7 +42,8 @@ jobs:
       deploy:
         - provider: script
           script: bash .travis/dev_deploy.sh
-
+          on:
+            branch: developer
     - stage: production
       if: branch = master
 
