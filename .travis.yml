@@ -35,10 +35,16 @@ jobs:
       branch: developer
       script:
         - npm run build
-        - docker build -t giangbuiquang/aatest:dev .
+        - docker build -t giangbuiquang/aatest:development .
       after_success:
         - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-        - docker push giangbuiquang/aatest:dev
+        - docker push giangbuiquang/aatest:development
+      deploy:
+        - provider: script
+          script: bash .travis/deploy.sh
+          on:
+            branch: development
+
     - stage: production
       branch: master
       script:
@@ -52,11 +58,7 @@ jobs:
     #   script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
     # - script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
 
-deploy:
-  - provider: script
-    script: bash .travis/deploy.sh
-    on:
-      branch: developer
+
 
   # - provider: script
   #   script: deploy_staging.sh
