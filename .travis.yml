@@ -28,7 +28,8 @@ deploy:
 addons:
   ssh_known_hosts:
   - $REMOTE_HOST
-
+install:
+  - echo $REMOTE_HOST >> $HOME/.ssh/known_hosts
   # - provider: script
   #   script: deploy_staging.sh
   #   on:
