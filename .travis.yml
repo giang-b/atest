@@ -44,7 +44,8 @@ jobs:
           script: bash .travis/dev_deploy.sh
 
     - stage: production
-      branch: master
+      branches:
+        only: master
       script:
         - npm run build
         - docker build -t giangbuiquang/aatest:production-$PROD_VERSION .
