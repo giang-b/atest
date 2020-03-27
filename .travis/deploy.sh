@@ -5,3 +5,4 @@ ssh -i .travis/deploy_rsa -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST 
 ssh -i .travis/deploy_rsa -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST docker run --name aatest --rm -d -p 80:80/tcp giangbuiquang/aatest
 
 
+
