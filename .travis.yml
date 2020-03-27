@@ -27,7 +27,7 @@ deploy:
       branch: developer
 addons:
   ssh_known_hosts:
-    - $REMOTE_HOST
+  - $REMOTE_HOST:22
 
   # - provider: script
   #   script: deploy_staging.sh
