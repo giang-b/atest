@@ -41,9 +41,7 @@ jobs:
         - docker push giangbuiquang/aatest:dev-$DEV_VERSION
       deploy:
         - provider: script
-          script: bash .travis/deploy.sh
-          on:
-            branch: developer
+          script: bash .travis/dev_deploy.sh
 
     - stage: production
       branch: master
