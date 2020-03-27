@@ -43,7 +43,7 @@ jobs:
         - provider: script
           script: bash .travis/deploy.sh
           on:
-            branch: development
+            branch: developer
 
     - stage: production
       branch: master
