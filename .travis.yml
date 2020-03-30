@@ -20,7 +20,7 @@ jobs:
         - docker push $DOCKER_USERNAME/$PROJECT_NAME:dev-$DEV_VERSION
       deploy:
         - provider: script
-          script: bash .travis/dev_deploy.sh
+          script: bash .travis/deploy.sh
           env:
             VERSION=dev-$DEV_VERSION
           on:
@@ -35,7 +35,7 @@ jobs:
         - docker push $DOCKER_USERNAME/$PROJECT_NAME:test-$TEST_VERSION
       deploy:
         - provider: script
-          script: bash .travis/test_deploy.sh
+          script: bash .travis/deploy.sh
           on:
             branch: test
           env:
