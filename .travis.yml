@@ -12,16 +12,17 @@ jobs:
   include:
     - stage: development
       if: branch = developer
-      script:
-        - npm run build
-        - docker build -t $DOCKER_USERNAME/$PROJECT_NAME:dev-$DEV_VERSION .
-      after_success:
-        - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-        - docker push $DOCKER_USERNAME/$PROJECT_NAME:dev-$DEV_VERSION
       env:
         VERSION=dev-$DEV_VERSION
         REMOTE_SERVER_USER=$REMOTE_DEV_SERVER_USER
         REMOTE_SERVER=$REMOTE_DEV_SERVER
+      script:
+        - npm run build
+        - docker build -t $DOCKER_USERNAME/$PROJECT_NAME:$VERSION .
+      after_success:
+        - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+        - docker push $DOCKER_USERNAME/$PROJECT_NAME:$VERSION
+      
       deploy:
         - provider: script
           script: bash .travis/deploy.sh
@@ -29,6 +30,10 @@ jobs:
             branch: developer
     - stage: test
       if: branch = test
+      env:
+        VERSION=test-$TEST_VERSION
+        REMOTE_SERVER_USER=$REMOTE_TEST_SERVER_USER
+        REMOTE_SERVER=$REMOTE_TEST_SERVER
       script:
         - npm run build
         - docker build -t $DOCKER_USERNAME/$PROJECT_NAME:test-$TEST_VERSION .
@@ -40,10 +45,7 @@ jobs:
           script: bash .travis/deploy.sh
           on:
             branch: test
-          env:
-            VERSION=test-$TEST_VERSION
-            REMOTE_SERVER_USER=$REMOTE_TEST_SERVER_USER
-            REMOTE_SERVER=$REMOTE_TEST_SERVER
+          
     - stage: production
       if: branch = master
 
