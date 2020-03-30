@@ -22,7 +22,6 @@ jobs:
       after_success:
         - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
         - docker push $DOCKER_USERNAME/$PROJECT_NAME:$VERSION
-      
       deploy:
         - provider: script
           script: bash .travis/deploy.sh
