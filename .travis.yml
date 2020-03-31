@@ -7,7 +7,6 @@ cache:
 # addons:
 #   ssh_known_hosts: $REMOTE_SERVER
 
-before_install:
 jobs:
   include:
     - stage: development
